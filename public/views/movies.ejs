@@ -6,34 +6,46 @@
 </head>
 
 <body>
-    <h1>Test for ejs</h1>
+    <!-- We are including the navbar here -->
+    <% include ./partials/navbar %>
 
-    <div class="row">
-        <!-- This is the EJS syntax to create a loop -->
-        <% movies.forEach(function(movie, index) { %>
-            <div class="col-sm-4">
-                <div class="panel">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <%= movie.title %> (
-                                <%= movie.release %>)</h3>
+        <div class="container">
+            <h2>Editing:
+                <strong>Movies</strong>
+            </h2>
+
+            <div class="row clearfix">
+                <% movies.forEach(function(movie, index) { %>
+                    <div class="col-sm-4">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Edit:
+                                    <%= movie.title %>
+                                </h3>
+                            </div>  <!-- panel-heading -->
+                            <div class="panel-body text-center">
+                                <label for="name">Name</label>
+                                <input id="name" type="text" class="form-control" value="<%= movie.title ">
+
+                                <label for="release">Release</label>
+                                <input id="release" type="text" value="<%= movie.release" class="form-control">
+
+                                <label for="score">Score</label>
+                                <input id="score" type="text" value="<%= movie.score" class="form-control">
+
+                                <label for="reviewer">Reviewer</label>
+                                <input id="reviewer" type="text" value=" <% movie.reviewer" class="form-control">
+
+                                <label for="publication">Publication</label>
+                                <input id="publication" type="text" value=" <%= movie.publication" class="form-control">
+                            </div>
+                        </div>
                     </div>
-                    <div class="panel-body text-center">
-                        <h1>
-                            <%= movie.score %>
-                                <small>/ 10</small>
-                        </h1>
-                    </div>
-                    <div class="panel-footer small">
-                        <p>By
-                            <%= movie.reviewer %> for
-                                <%= movie.publication %>
-                    </div>
-                </div>
-            </div>
-            <!-- We’ll also have to close our loop -->
-            <% }) %>
-    </div>
+                    <% }) %> <!-- end forEach -->
+            </div>  <!-- .row -->
+            <a href="" class="btn btn-primary btn-block">Save</a>
+
+        </div>  <!-- .container  -->
 </body>
 
 </html>
