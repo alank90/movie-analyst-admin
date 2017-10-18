@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <% include ./partials/head>
+    <% include ./partials/head %>
 </head>
 
 <body>
@@ -11,27 +11,33 @@
 
         <div class="container">
             <h2>Editing:
-                <strong>Authors</strong>
+                <strong>Pending</strong>
             </h2>
 
             <div class="row clearfix">
-                <% authors.forEach(function(author, index) { %>
+                <% movies.forEach(function(movie, index) { %>
                     <div class="col-sm-4">
                         <div class="panel">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Edit:
-                                    <%= author.name %>
+                                    <%= movie.title %>
                                 </h3>
                             </div>
                             <div class="panel-body text-center">
                                 <label>Name</label>
-                                <input type="text" class="form-control" value="<%= author.name %>" />
+                                <input type="text" class="form-control" value="<%= movie.title %>" />
 
-                                <label>Avatar</label>
-                                <input type="text" class="form-control" value="<%= author.avatar %>" />
+                                <label>Release</label>
+                                <input type="text" class="form-control" value="<%= movie.release %>" />
+
+                                <label>Score</label>
+                                <input type="text" class="form-control" value="<%= movie.score %>" />
+
+                                <label>Reviewer</label>
+                                <input type="text" class="form-control" value="<%= movie.reviewer %>" />
                                 
                                 <label>Publication</label>
-                                <input type="text" class="form-control" value="<%= author.publication %>" />
+                                <input type="text" class="form-control" value="<%= movie.publication %>" />
                             </div>
                         </div>
                     </div>

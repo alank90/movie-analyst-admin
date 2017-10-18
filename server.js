@@ -105,12 +105,15 @@ app.get('/pending', getAccessToken, function (req, res) {
         .end(function (err, data) {
             if (data.status == 401) {
                 res.status(401).send(err);
+            } else {
+                const movies = data.body;
+                res.render('pending', { movies: movies });
             }
         });
 });
 
-// Our MovieAnalyst Website will listen on port 3000. Feel free to change this as you see fit, just know that you can’t
+// Our MovieAnalyst Admin Website will listen on port 4000. Feel free to change this as you see fit, just know that you can’t
 // have multiple processes listening on the same port.
-app.listen(3000, function () {
-    console.log('Express Server Web App listening on port 4000');
+app.listen(4000, function () {
+    console.log('Movie-Analyst-Admin Web App listening on port 4000');
 });

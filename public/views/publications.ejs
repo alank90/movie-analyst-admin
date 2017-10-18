@@ -1,32 +1,42 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-    <% include ./partials/head %>
 
+<head>
+    <% include ./partials/head>
+</head>
 <body>
-    <div class="container">
-        <div class="jumbotron text-center">
-            <h1>
-                <span class="glyphicon glyphicon-tower"></span>
-            </h1>
-            <h2>Our Publication Partners</h2>
-        </div>
 
-        <div class="row">
-            <% publications.forEach(function(publication, index) { %>
-                <div class="col sm-4">
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">
-                                <%= publication.name %>
-                            </h3>
-                        </div>
-                        <div class="panel-body text-center">
-                            <h1><span class="glyphicon <%= publication.avatar %>"></span></h1>
+    <% include ./partials/navbar %>
+
+        <div class="container">
+            <h2>Editing:
+                <strong>Publications</strong>
+            </h2>
+
+            <div class="row clearfix">
+                <% publications.forEach(function(publication, index) { %>
+                    <div class="col-sm-4">
+                        <div class="panel">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Edit:
+                                    <%= publication.name %>
+                                </h3>
+                            </div>
+                            <div class="panel-body text-center">
+                                <label>Name</label>
+                                <input type="text" class="form-control" value="<%= publication.name %>" />
+
+                                <label>Avatar</label>
+                                <input type="text" class="form-control" value="<%= publication.avatar %>" />
+
+                            </div>
                         </div>
                     </div>
-                </div>
-            <% }) %>  <!-- end forEach  -->
-        </div>
-    </div> <!-- .container -->
-</body>
+                <% }) %>
+            </div>
+            <a class="btn btn-primary btn-block">Save</a>
+        </div>  <!-- .container -->
+
+        </body>
+
 </html>
