@@ -26,6 +26,10 @@ const authData = {
     audience: 'movieanalyst'
 };
 
+// ===================================================================================================
+// ============= Middlware Below This Line =========================================================== 
+// ===================================================================================================
+
 // We’ll create a middleware to make a request to the oauth/token Auth0 API with our authData we created earlier.
 // Our data will be validated and if everything is correct, we’ll get back an access token.
 // We’ll store this token in the req.access_token variable and continue the request execution.
@@ -39,6 +43,10 @@ function getAccessToken(req, res, next) {
             next();
         });
 }
+
+// ================================================================================================
+// ============= Routes Below This Line =========================================================== 
+// ================================================================================================
 
 // The homepage route of our application does not interface with the MovieAnalyst API and is always accessible. 
 // We won’t use the getAccessToken middleware here. We’ll simply render the index.ejs view.
