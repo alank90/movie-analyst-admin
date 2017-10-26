@@ -1,7 +1,7 @@
 // Declare our dependencies
 const express = require('express');
 const request = require('superagent');
-const getAccessToken = require('../get_token')
+const getAccessToken = require('../get_token');
 
 var router = express.Router();
 
