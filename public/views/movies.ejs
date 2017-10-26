@@ -13,11 +13,11 @@
             <h2>Editing:
                 <strong>Movies</strong>
             </h2>
-
+            
             <div class="row clearfix">
                 <% movies.forEach(function(movie, index) { %>
                     <div class="col-sm-4">
-                        <div class="panel">
+                        <div class="panel" data-id="<%= movie._id%>">
                             <div class="panel-heading">
                                 <h3 class="panel-title">Edit:
                                     <%= movie.title %>
