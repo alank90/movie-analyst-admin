@@ -1,3 +1,18 @@
 body {
     background-color: #ecedec;
 }
+
+.panel-title  {
+    display: inline-block;
+    max-width: 60%;
+}
+
+.checkbox {
+   max-width: 35%;
+   float: right;
+}
+
+.checkbox input[type="checkbox"] {
+    margin-left: 0;
+    border-radius: 15px;
+}

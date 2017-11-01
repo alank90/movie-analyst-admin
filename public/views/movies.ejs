@@ -22,6 +22,11 @@
                                 <h3 class="panel-title">Edit:
                                     <%= movie.title %>
                                 </h3>
+                                <div class="checkbox">
+                                    <input type="checkbox" name="update">
+                                    <label id="update">Update</label>        
+                                </div>
+                               
                             </div>  <!-- panel-heading -->
                             <div class="panel-body text-center">
                                 <label for="name">Name</label>
@@ -43,7 +48,7 @@
                     </div>
                     <% }) %> <!-- end forEach -->
             </div>  <!-- .row -->
-            <a href="" class="btn btn-primary btn-block">Save</a>
+            <a id="update_button" href="" class="btn btn-primary btn-block">Save</a>
 
         </div>  <!-- .container  -->
 </body>
