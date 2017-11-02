@@ -7,12 +7,12 @@ body {
     max-width: 60%;
 }
 
-.checkbox {
+.radiobox {
    max-width: 35%;
    float: right;
 }
 
-.checkbox input[type="checkbox"] {
+.radiobox input[type="radio"] {
     margin-left: 0;
     border-radius: 15px;
 }
