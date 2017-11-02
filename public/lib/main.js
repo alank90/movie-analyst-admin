@@ -18,7 +18,7 @@ $(document).ready(function () {
                     publication: $(this).find("input#publication").val()
                 };
                 JSON.stringify(updatedDocument);
-                console.log("Movie Document is: " + updatedDocument.release);
+                console.log(Object.values(updatedDocument));
             }
         }); // .each
 
