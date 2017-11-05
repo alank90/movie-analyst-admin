@@ -32,9 +32,7 @@ $(document).ready(function () {
             type: 'PUT',
             data: updatedDocument,
             url: 'http://localhost:8080/movies/updatemovie/' + updatedDocument.documentID,
-            dataType: 'JSON',
-            contentType: 'application/json'
-
+            dataType: 'JSON'
         }).done(function (response) {
              // Check for successful (blank) response
             if (response.msg === '') {
