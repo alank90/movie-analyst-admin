@@ -29,10 +29,12 @@ $(document).ready(function () {
         // an AJAX req and grab the updated data from our document and send
         // a PUT to our API endpoint
         $.ajax({
-            type: 'POST',
+            type: 'PUT',
             data: updatedDocument,
             url: 'http://localhost:8080/movies/updatemovie/' + updatedDocument.documentID,
-            dataType: 'JSON'
+            dataType: 'JSON',
+            contentType: 'application/json'
+
         }).done(function (response) {
              // Check for successful (blank) response
             if (response.msg === '') {
