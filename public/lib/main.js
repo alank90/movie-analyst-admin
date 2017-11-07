@@ -21,7 +21,6 @@ $(document).ready(function () {
                         publication: $(this).find("input#publication").val()
                     };
                 JSON.stringify(updatedDocument);
-                console.log(Object.values(updatedDocument));
             } // end if
         }); // .each
 
@@ -34,12 +33,18 @@ $(document).ready(function () {
             url: 'http://localhost:8080/movies/updatemovie/' + updatedDocument.documentID,
             dataType: 'JSON'
         }).done(function (response) {
-             // Check for successful (blank) response
-            if (response.msg === '') {
-                // do nothing
+             // Check for successful json response
+            if (Object.keys(response).length > 0) {
+                // Update the movie panel
+                console.log(Object.keys(response).length);
+                const movie = response;
+                console.log(movie);
+                console.log(movie[0].title);
+                $("div[data-id = " + movie[0]._id + "] .panel-title").text("Edit: " + movie[0].title);
+                
             }
             else {
-                alert('Error: ' + response.msg);
+               //alert('Error: ' + response.msg);
             }
 
         }); // end .done
