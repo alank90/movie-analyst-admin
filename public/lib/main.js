@@ -38,10 +38,16 @@ $(document).ready(function () {
                 // Update the movie panel
                 console.log(Object.keys(response).length);
                 const movie = response;
-                console.log(movie);
+                console.log(movie[0]._id);
                 console.log(movie[0].title);
+                test = $("div[data-id = " + movie[0]._id + "] input #release").val();
+                console.log(test);
                 $("div[data-id = " + movie[0]._id + "] .panel-title").text("Edit: " + movie[0].title);
-                
+                $("div[data-id = " + movie[0]._id + "] #name").text(movie[0].title);
+                $("div[data-id = " + movie[0]._id + "] #release").text(movie[0].release);
+                $("div[data-id = " + movie[0]._id + "] #score").text(movie[0].score);
+                $("div[data-id = " + movie[0]._id + "] #reviewer").text(movie[0].reviewer);
+                $("div[data-id = " + movie[0]._id + "] #publication").val(movie[0].title);
             }
             else {
                //alert('Error: ' + response.msg);
