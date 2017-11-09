@@ -16,3 +16,9 @@ body {
     margin-left: 0;
     border-radius: 15px;
 }
+
+li.add_review a[href="#"] {
+    float: right;
+    color: #a7b0e7;
+    font-size: 2rem;
+}
