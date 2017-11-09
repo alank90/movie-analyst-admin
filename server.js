@@ -14,7 +14,7 @@ const pending_route = require('./routes/pending');
 
 // Set the view engine to use EJS as well as set the default views directory
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '/public/views/');
+app.set('views', __dirname + '/views/');
 
 // This tells Express out of which directory to serve static assets like CSS and images
 app.use(express.static(__dirname + '/public'));
