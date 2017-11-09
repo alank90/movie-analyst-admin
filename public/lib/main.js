@@ -36,18 +36,15 @@ $(document).ready(function () {
              // Check for successful json response
             if (Object.keys(response).length > 0) {
                 // Update the movie panel
-                console.log(Object.keys(response).length);
                 const movie = response;
-                console.log(movie[0]._id);
-                console.log(movie[0].title);
-                test = $("div[data-id = " + movie[0]._id + "] input #release").val();
-                console.log(test);
+                
+                // Write the Updated Values back to the  movie form panel from API JSON return array
                 $("div[data-id = " + movie[0]._id + "] .panel-title").text("Edit: " + movie[0].title);
-                $("div[data-id = " + movie[0]._id + "] #name").text(movie[0].title);
-                $("div[data-id = " + movie[0]._id + "] #release").text(movie[0].release);
-                $("div[data-id = " + movie[0]._id + "] #score").text(movie[0].score);
-                $("div[data-id = " + movie[0]._id + "] #reviewer").text(movie[0].reviewer);
-                $("div[data-id = " + movie[0]._id + "] #publication").val(movie[0].title);
+                $("div[data-id = " + movie[0]._id + "] input#name.form-control").attr("value", movie[0].title);
+                $("div[data-id = " + movie[0]._id + "] input#release.form-control").attr("value", movie[0].release);
+                $("div[data-id = " + movie[0]._id + "] input#score.form-control").attr("value", movie[0].score);
+                $("div[data-id = " + movie[0]._id + "] input#reviewer.form-control").attr("value", movie[0].reviewer);
+                $("div[data-id = " + movie[0]._id + "] input#publication.form-control").attr("value", movie[0].publication);
             }
             else {
                //alert('Error: ' + response.msg);
