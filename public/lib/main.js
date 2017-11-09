@@ -47,7 +47,7 @@ $(document).ready(function () {
                 $("div[data-id = " + movie[0]._id + "] input#publication.form-control").attr("value", movie[0].publication);
             }
             else {
-               //alert('Error: ' + response.msg);
+               alert('Error: ' + response.msg);
             }
 
         }); // end .done
