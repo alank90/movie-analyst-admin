@@ -17,8 +17,9 @@ body {
     border-radius: 15px;
 }
 
-li.add_review a[href="#"] {
-    float: right;
+li.add_record a[href="#"] {
     color: #a7b0e7;
     font-size: 2rem;
 }
+
+

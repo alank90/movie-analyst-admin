@@ -9,11 +9,12 @@
     <!-- We are including the navbar here -->
     <% include ./partials/navbar %>
 
-        <div class="container">
+        <div>
+
             <h2>Editing:
                 <strong>Movies</strong>
             </h2>
-            
+
             <div class="row clearfix">
                 <% movies.forEach(function(movie, index) { %>
                     <div class="col-sm-4">
@@ -24,10 +25,11 @@
                                 </h3>
                                 <div class="radiobox">
                                     <input type="radio" name="update">
-                                    <label id="update">Update</label>        
+                                    <label id="update">Update</label>
                                 </div>
-                               
-                            </div>  <!-- panel-heading -->
+
+                            </div>
+                            <!-- panel-heading -->
                             <div class="panel-body text-center">
                                 <label for="name">Name</label>
                                 <input id="name" type="text" class="form-control" value="<%= movie.title %>">
@@ -46,11 +48,14 @@
                             </div>
                         </div>
                     </div>
-                    <% }) %> <!-- end forEach -->
-            </div>  <!-- .row -->
+                    <% }) %>
+                        <!-- end forEach -->
+            </div>
+            <!-- .row -->
             <button id="update_button" class="btn btn-primary btn-block">Save</button>
 
-        </div>  <!-- .container  -->
+        </div>
+
 </body>
 
 </html>
