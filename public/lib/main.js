@@ -2,6 +2,7 @@
 
 // ================ Main ============================================ 
 $(document).ready(function () {
+    // Event Handler for Updating Movies page
     $("#update_button").on("click", function (e) {
         e.preventDefault();
         var updatedDocument = {};
@@ -52,6 +53,21 @@ $(document).ready(function () {
 
         }); // end .done
 
-    });  // #update_button
+    });  // =========== #update_button ==============================
+
+
+    // ==== Event handler for Add New Movie Modal on movies page ==================
+    $("#add_movie").on("click", function(e) {
+        e.preventDefault();
+        var x = $("#movieTitle").val();
+       console.log(x);
+
+        /*$.ajax({
+            type: 'POST',
+            data: movieData,
+            url: 'http://localhost:8080/movies/addmovie',
+            dataType: JSON
+        }); */
+    });
 
 }); // end $(document).ready()
