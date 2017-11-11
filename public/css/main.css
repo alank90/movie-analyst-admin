@@ -23,3 +23,11 @@ li.add_record a[href="#"] {
 }
 
 
+
+
+.hidden {
+    display: none;
+    visibility: none;
+}
+
+
