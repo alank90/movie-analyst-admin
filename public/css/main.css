@@ -7,12 +7,12 @@ body {
     max-width: 60%;
 }
 
-.radiobox {
+.radio {
    max-width: 35%;
    float: right;
 }
 
-.radiobox input[type="radio"] {
+.radio input[type="radio"] {
     margin-left: 0;
     border-radius: 15px;
 }
