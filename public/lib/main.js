@@ -59,15 +59,17 @@ $(document).ready(function () {
     // ==== Event handler for Add New Movie Modal on movies page ==================
     $("#add_movie").on("click", function(e) {
         e.preventDefault();
-       const x = $("form").serializeArray();
-       console.log(x);
-
-        /*$.ajax({
-            type: 'POST',
-            data: movieData,
+       
+        $.ajax({
+            method: 'POST',
+            data: $("#form").serializeArray(),
             url: 'http://localhost:8080/movies/addmovie',
-            dataType: JSON
-        }); */
-    });
+            dataType: 'JSON'
+        })
+        .done(function(response) {
+            $('#addReviewModal').modal('hide');
+            console.log(response);
+        });
+    }); // end event handler
 
 }); // end $(document).ready()
