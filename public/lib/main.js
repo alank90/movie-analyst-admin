@@ -2,7 +2,7 @@
 
 // ================ Main ============================================ 
 $(document).ready(function () {
-    // Event Handler for Updating Movies page
+    // ========= Event Handler for Updating Movies page =============
     $("#update_button").on("click", function (e) {
         e.preventDefault();
         var updatedDocument = {};
@@ -53,7 +53,7 @@ $(document).ready(function () {
 
         }); // end .done
 
-    });  // =========== #update_button ==============================
+    });  // =========== End #update_button  event handler ==============================
 
 
     // ==== Event handler for Add New Movie Modal on movies page ==================
