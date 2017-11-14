@@ -39,7 +39,7 @@ $(document).ready(function () {
                 // Update the movie panel
                 const movie = response;
                 
-                // Write the Updated Values back to the  movie form panel from API JSON return array
+                // Write the Updated Values back to the movie form panel from API JSON return array
                 $("div[data-id = " + movie[0]._id + "] .panel-title").text("Edit: " + movie[0].title);
                 $("div[data-id = " + movie[0]._id + "] input#name.form-control").attr("value", movie[0].title);
                 $("div[data-id = " + movie[0]._id + "] input#release.form-control").attr("value", movie[0].release);
@@ -67,7 +67,7 @@ $(document).ready(function () {
             dataType: 'JSON'
         })
         .done(function(response) {
-            $('#addReviewModal').modal('hide');
+            $('#addReviewModal').modal('hide'); // close modal
             console.log(response);
         });
     }); // end event handler
