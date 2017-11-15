@@ -1,5 +1,5 @@
 // main.js
-
+// const ejs = require('ejs');
 // ================ Main ============================================ 
 $(document).ready(function () {
     // ========= Event Handler for Updating Movies page =============
@@ -68,7 +68,12 @@ $(document).ready(function () {
         })
         .done(function(response) {
             $('#addReviewModal').modal('hide'); // close modal
-            console.log(response);
+           
+            /* Refresh page with a route call to /movies
+             .load places the returned HTML into the matched element.
+             .load allows us to specify a portion of the remote document to 
+             be inserted. */
+            $( "#movie_panels").load( '/movies #movie_panels' );      
         });
     }); // end event handler
 
