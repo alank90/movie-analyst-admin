@@ -14,13 +14,18 @@ body {
 }
 
 .radio {
-   max-width: 35%;
+   max-width: 40%;
    float: right;
 }
 
 .radio input[type="radio"] {
     margin-left: 0;
     border-radius: 15px;
+}
+
+#delete {
+    color:#CE413D;
+    font-weight: 800;
 }
 
 li.add_record a[href="#"] {

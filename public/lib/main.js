@@ -1,5 +1,5 @@
 // main.js
-// const ejs = require('ejs');
+
 // ================ Main ============================================ 
 $(document).ready(function () {
     // ========= Event Handler for Updating Movies page =============
@@ -8,7 +8,7 @@ $(document).ready(function () {
         var updatedDocument = {};
 
         // Let's find the data-id of the checked panel
-        // We will iterate thru each panel DOM object and check 
+        // We will iterate thru each .panel DOM object and check 
         // if its radiobox is checked, and if so we will go 
         // and grab the data-id value of this panel object
         $(".panel").each(function (index) {
@@ -53,7 +53,7 @@ $(document).ready(function () {
 
         }); // end .done
 
-    });  // =========== End #update_button  event handler ==============================
+    });  // =========== End #update_button  event handler =========================
 
 
     // ==== Event handler for Add New Movie Modal on movies page ==================
@@ -69,12 +69,43 @@ $(document).ready(function () {
         .done(function(response) {
             $('#addReviewModal').modal('hide'); // close modal
            
-            /* Refresh page with a route call to /movies
+            /* Refresh page with a call to this site's(admin) /movies route.
              .load places the returned HTML into the matched element.
              .load allows us to specify a portion of the remote document to 
-             be inserted. */
+             be inserted(#movie_panels). */
             $( "#movie_panels").load( '/movies #movie_panels' );      
         });
     }); // end event handler
 
-}); // end $(document).ready()
+    // ==== Event handler to Delete Movie document on movies page ==================
+    $("#delete_button").on("click", function(e) {
+        e.preventDefault();
+        var deleteDocumentID;
+
+        $(".panel").each(function (index) {
+            if ($(this).find("input[name = 'delete']").is(":checked")) {
+                    deleteDocumentID = $(this).data("id");
+            } else {
+                alert("Attention. No Delete Selection Made.");
+            }
+        }); // .each
+
+        // Let's Send off the ID to be deleted to the Movie-Analyst API via AJAX
+       $.ajax({
+            method: 'DELETE',
+            url: 'http://localhost:8080/movies/deletemovie/' + deleteDocumentID,
+            dataType: 'JSON'
+        })
+        .done(function(response) {
+             /* Refresh page with a call to this site's(admin) /movies route.
+             .load places the returned HTML into the matched element.
+             .load allows us to specify a portion of the remote document to 
+             be inserted(#movie_panels). */
+            $( "#movie_panels").load('/movies #movie_panels');      
+        });
+            
+    }); // end.on
+
+    // ================ End Event Handler ==========================================
+
+    }); // end $(document).ready()
