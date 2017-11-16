@@ -22,7 +22,9 @@ li.add_record a[href="#"] {
     font-size: 2rem;
 }
 
-
+btn {
+    width: 40vw;
+}
 
 
 .hidden {
