@@ -81,13 +81,20 @@ $(document).ready(function () {
     $("#delete_button").on("click", function(e) {
         e.preventDefault();
         var deleteDocumentID;
+        var selectionCounter = 0;
 
         $(".panel").each(function (index) {
             if ($(this).find("input[name = 'select']").is(":checked")) {
                 deleteDocumentID = $(this).data("id");
+                selectionCounter += 1;
             } 
         }); // .each
 
+          // Check if a selection was made on the page
+        if (selectionCounter === 0) {
+            alert("Attention. No Selection Made.");
+        }
+        
         // Let's Send off the ID to be deleted to the Movie-Analyst API via AJAX
        $.ajax({
             method: 'DELETE',
