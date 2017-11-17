@@ -4,9 +4,10 @@
 $(document).ready(function () {
     // ========= Event Handler for Updating Movies page =============
     $("#update_button").on("click", function (e) {
+    try { 
         e.preventDefault();
         var updatedDocument = {};
-
+        
         // Let's find the data-id of the checked panel
         // We will iterate thru each .panel DOM object and check 
         // if its radiobox is checked, and if so we will go 
@@ -24,6 +25,12 @@ $(document).ready(function () {
                 JSON.stringify(updatedDocument);
             } // end if
         }); // .each
+
+         // Check if a selection was made on the page
+        if (Object.keys(updatedDocument).length === 0) {
+             throw "Error: Empty updateDocument Object. Did you make a selection?";
+        }
+    
 
         // Now we have the document stored in JSON object, so lets form 
         // an AJAX req and grab the updated data from our document and send
@@ -52,6 +59,10 @@ $(document).ready(function () {
             }
 
         }); // end .done
+    }
+    catch(error) {
+       alert(error);
+    }
 
     });  // =========== End #update_button  event handler =========================
 
@@ -79,38 +90,46 @@ $(document).ready(function () {
 
     // ==== Event handler to Delete Movie document on movies page ==================
     $("#delete_button").on("click", function(e) {
-        e.preventDefault();
-        var deleteDocumentID;
-        var selectionCounter = 0;
+        try {
+            e.preventDefault();
+            var deleteDocumentID;
+            var selectionCounter = 0;
 
-        $(".panel").each(function (index) {
-            if ($(this).find("input[name = 'select']").is(":checked")) {
-                deleteDocumentID = $(this).data("id");
-                selectionCounter += 1;
-            } 
-        }); // .each
+            $(".panel").each(function (index) {
+                if ($(this).find("input[name = 'select']").is(":checked")) {
+                    deleteDocumentID = $(this).data("id");
+                    selectionCounter += 1;
+                } 
+            }); // .each
 
-          // Check if a selection was made on the page
-        if (selectionCounter === 0) {
-            alert("Attention. No Selection Made.");
+            // Check if a selection was made on the page and confirm.
+            if (selectionCounter === 0) {
+                throw "Error. No Selection Made.";
+            }
+            const confirmDelete = confirm("Are you sure you want to delete document?");
+            if (confirmDelete == true) //do nothing
+                    
+                // Let's Send off the ID to be deleted to the Movie-Analyst API via AJAX
+            $.ajax({
+                    method: 'DELETE',
+                    url: 'http://localhost:8080/movies/deletemovie/' + deleteDocumentID,
+                    dataType: 'JSON'
+                })
+                .done(function(response) {
+                    /* Refresh page with a call to this site's(admin) /movies route.
+                    .load places the returned HTML into the matched element.
+                    .load allows us to specify a portion of the remote document to 
+                    be inserted(#movie_panels). */
+                    $( "#movie_panels").load('/movies #movie_panels');      
+                });
         }
-        
-        // Let's Send off the ID to be deleted to the Movie-Analyst API via AJAX
-       $.ajax({
-            method: 'DELETE',
-            url: 'http://localhost:8080/movies/deletemovie/' + deleteDocumentID,
-            dataType: 'JSON'
-        })
-        .done(function(response) {
-             /* Refresh page with a call to this site's(admin) /movies route.
-             .load places the returned HTML into the matched element.
-             .load allows us to specify a portion of the remote document to 
-             be inserted(#movie_panels). */
-            $( "#movie_panels").load('/movies #movie_panels');      
-        });
+        catch(error) {
+           alert(error);
+        }
             
     }); // end.on
 
+    
     // ================ End Event Handler ==========================================
 
     }); // end $(document).ready()
