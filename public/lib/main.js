@@ -12,7 +12,7 @@ $(document).ready(function () {
         // if its radiobox is checked, and if so we will go 
         // and grab the data-id value of this panel object
         $(".panel").each(function (index) {
-            if ($(this).find("input[name = 'update']").is(":checked")) {
+            if ($(this).find("input[name = 'select']").is(":checked")) {
                     updatedDocument = {
                         documentID: $(this).data("id"),
                         title: $(this).find("input#name").val(),
@@ -83,11 +83,9 @@ $(document).ready(function () {
         var deleteDocumentID;
 
         $(".panel").each(function (index) {
-            if ($(this).find("input[name = 'delete']").is(":checked")) {
-                    deleteDocumentID = $(this).data("id");
-            } else {
-                alert("Attention. No Delete Selection Made.");
-            }
+            if ($(this).find("input[name = 'select']").is(":checked")) {
+                deleteDocumentID = $(this).data("id");
+            } 
         }); // .each
 
         // Let's Send off the ID to be deleted to the Movie-Analyst API via AJAX
