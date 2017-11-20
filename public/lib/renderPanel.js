@@ -1,4 +1,4 @@
-// renderMoviePanel.js 
+// renderPanel.js 
  const deleteMovie = function (movieID) {
     if( movieID != "") {
         console.log("Im in IF renderPAnel");
