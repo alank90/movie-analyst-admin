@@ -113,14 +113,14 @@ $(document).ready(function () {
             $.ajax({
                     method: 'DELETE',
                     url: 'http://localhost:8080/movies/deletemovie/' + deleteDocumentID,
-                    dataType: 'JSON'
+                    dataType: "text"
                 })
-                .done(function(response) {
-                    /* Refresh page with a call to this site's(admin) /movies route.
-                    .load places the returned HTML into the matched element.
-                    .load allows us to specify a portion of the remote document to 
-                    be inserted(#movie_panels). */
-                    $( "#movie_panels").load('/movies #movie_panels');      
+                .then(function(response) {
+                   if(deleteMovie(response)) {
+                      // Do nothing return true
+                   } else {
+                       throw "Error: Return from API is empty.";
+                   }  
                 });
         }
         catch(error) {
