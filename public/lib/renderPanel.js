@@ -1,4 +1,7 @@
-// renderPanel.js 
+// renderPanel.js
+
+// Function takes the movieID returned from /deleteMovie route
+// and updates the DOM
  const deleteMovie = function (movieID) {
     if( movieID != "") {
         deleteMoviePanel = $("div[data-id=" + movieID + "]");
@@ -8,11 +11,13 @@
     } else {
         return false;
     }
-};
+}; // end deleteMovie function
 
+// Function takes movie document returned from AJAX Add call on /addmovie
+// route and appends it to the DOM.
 const addMovie = function(movie) {
-    console.log(movie);
     var moviePanel = "";
+
     // Append the new Movie Panel
     if(movie != "") {
         moviePanel += "<div class='col-sm-4'> <div class='panel' data-id='" + movie[0]._id + "'>";
@@ -32,4 +37,4 @@ const addMovie = function(movie) {
        // Append the panel to the main div
     $("#movie_panels").append(moviePanel);
     
-};
+};  // End addMovie function
