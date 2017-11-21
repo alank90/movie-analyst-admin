@@ -77,15 +77,14 @@ $(document).ready(function () {
             url: 'http://localhost:8080/movies/addmovie',
             dataType: 'JSON'
         })
-        .done(function(response) {
-            $('#addReviewModal').modal('hide'); // close modal
-           
-            /* Refresh page with a call to this site's(admin) /movies route.
-             .load places the returned HTML into the matched element.
-             .load allows us to specify a portion of the remote document to 
-             be inserted(#movie_panels). */
-            $( "#movie_panels").load( '/movies #movie_panels' );      
+        .then(function(response) { 
+            if(addMovie(response)) {
+                // Do nothing if return true
+            } else {
+                throw "Error: Return from API is empty.";
+            }
         });
+        $('#addReviewModal').modal('hide');      
     }); // end event handler
 
     // ==== Event handler to Delete Movie document on movies page ==================
@@ -114,14 +113,14 @@ $(document).ready(function () {
                     method: 'DELETE',
                     url: 'http://localhost:8080/movies/deletemovie/' + deleteDocumentID,
                     dataType: "text"
-                })
-                .then(function(response) {
+            })
+            .then(function(response) {
                    if(deleteMovie(response)) {
-                      // Do nothing return true
+                      // Do nothing if return true
                    } else {
                        throw "Error: Return from API is empty.";
                    }  
-                });
+            });
         }
         catch(error) {
            alert(error);
