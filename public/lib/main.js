@@ -81,7 +81,7 @@ $(document).ready(function () {
             if(addMovie(response)) {
                 // Do nothing if return true
             } else {
-                throw "Error: Return from API is empty.";
+                throw "Error: Add Failed. No Movie Object.";
             }
         });
         $('#addReviewModal').modal('hide');      

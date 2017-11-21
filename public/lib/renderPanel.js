@@ -24,8 +24,12 @@ const addMovie = function(movie) {
         moviePanel += "<label for='reviewer'>Reviewer</label> <input id='reviewer' type='text' value='" + movie[0].reviewer + "' class='form-control'>";
         moviePanel += "<label for='publication'>Publication</label> <input id='publication' type='text' value='" + movie[0].publication + "' class='form-control'>";
         moviePanel += "</div></div></div>";
+        return true;
+    } else {
+        return false;
     }
    
        // Append the panel to the main div
     $("#movie_panels").append(moviePanel);
+    
 };
