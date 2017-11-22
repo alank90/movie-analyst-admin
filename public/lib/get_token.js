@@ -5,7 +5,7 @@ const request = require('superagent');
 
 // These two variables we’ll get from our Auth0 MovieAnalyst-Website Client.
 // Head over the the management dashboard at https://manage.auth0.com
-// Find the MovieAnalyst Website Client and copy and paste the Client ID and Secret
+// Find the MovieAnalyst Admin(Main) Website Client and copy and paste the Client ID and Secret
 const NON_INTERACTIVE_CLIENT_ID = 'dDaFd6kxSVohuUzgUVgQt70jwudxHvee';
 const NON_INTERACTIVE_CLIENT_SECRET = '2FJDqQ8EFp8VY-Oeew2ICkxnDVT1_3aMtBeTX3Rg3O38GbJ5bkeOiRMK0ZaAnqbC';
 
@@ -17,7 +17,7 @@ const authData = {
     audience: 'movieanalyst'
 };
 
-// We’ll create a middleware to make a request to the oauth/token Auth0 API with our authData we created earlier.
+// We’ll create a middleware to make a request to the oauth/token Auth0 API with our authData object we created earlier.
 // Our data will be validated and if everything is correct, we’ll get back an access token.
 // We’ll store this token in the req.access_token variable and continue the request execution.
 // It may be repetitive to call this endpoint each time and not very performant, so you can cache the access_token once it is received.
