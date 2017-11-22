@@ -4,9 +4,13 @@ body {
     font-weight: 500;
 }
 
+.panel {
+    height:40vh;
+}
+
 .panel-title  {
     display: inline-block;
-    max-width: 60%;
+    word-break: break-all;
 }
 
 .radio {
@@ -31,7 +35,6 @@ li.add_record a[href="#"] {
 
 .btn {
     display: inline-block;
-    max-width: 15vw;
     padding: .8rem;
     border-radius: 25px;
     font-weight: 600;
@@ -45,6 +48,10 @@ li.add_record a[href="#"] {
     font-size: 1.9rem;
     font-weight: 700;
     cursor:default;
+}
+
+a {
+    word-break: break-all;
 }
                
 /* Navbar Reset */
