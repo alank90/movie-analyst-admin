@@ -17,7 +17,7 @@
 // route and appends it to the DOM.
 const addMovie = function(movie) {
     var moviePanel = "";
-   
+    
     // Append the new Movie Panel
     if(movie != "") {
         moviePanel += "<div class='col-sm-4'> <div class='panel' data-id='" + movie[0]._id + "'>";
