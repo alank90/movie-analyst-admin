@@ -70,7 +70,7 @@ $(document).ready(function () {
     // ==== Event handler for Add New Movie Modal on movies page ==================
     $("#add_movie").on("click", function(e) {
         e.preventDefault();
-       
+      
         $.ajax({
             method: 'POST',
             data: $("#form").serializeArray(),

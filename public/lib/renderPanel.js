@@ -17,7 +17,7 @@
 // route and appends it to the DOM.
 const addMovie = function(movie) {
     var moviePanel = "";
-
+   
     // Append the new Movie Panel
     if(movie != "") {
         moviePanel += "<div class='col-sm-4'> <div class='panel' data-id='" + movie[0]._id + "'>";
@@ -29,12 +29,14 @@ const addMovie = function(movie) {
         moviePanel += "<label for='reviewer'>Reviewer</label> <input id='reviewer' type='text' value='" + movie[0].reviewer + "' class='form-control'>";
         moviePanel += "<label for='publication'>Publication</label> <input id='publication' type='text' value='" + movie[0].publication + "' class='form-control'>";
         moviePanel += "</div></div></div>";
+
+         // Append the panel to the main div
+        $("#movie_panels").append(moviePanel);
         return true;
     } else {
         return false;
     }
    
-       // Append the panel to the main div
-    $("#movie_panels").append(moviePanel);
+      
     
 };  // End addMovie function
