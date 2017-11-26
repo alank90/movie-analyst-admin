@@ -8,18 +8,21 @@
                   <h4 class="modal-title">Add New Movie Review</h4>
                 </div>
                 <div class="modal-body">
-                    <form id="form">
+                    <form id="form" role="form">
                         <div class="form-group">
                           <label for="movieTitle">Movie Title</label>
-                          <input type="text" class="form-control" id="title" name="title" placeholder="Gone With The Wind">
+                          <input type="text" class="form-control" id="title" name="title" placeholder="Gone With The Wind" data-error="Title is required" required>
+                          <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="release">Release</label>
-                            <input type="text" class="form-control" id="release" name="release" placeholder="Release Year">
+                            <input type="text" class="form-control" id="release" name="release" placeholder="Release Year" data-error="release date required" required>
+                            <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="score">Score</label>
-                            <input type="text" class="form-control" id="score" name="score" placeholder="Score">
+                            <input type="number" min="0" max="10" class="form-control" id="score" name="score" placeholder="Score" data-error="Score must be between 1-10" required>
+                            <div class="help-block with-errors"></div>
                         </div>
                         <div class="form-group">
                             <label for="reviewer">Reviewer</label>
@@ -29,12 +32,13 @@
                             <label for="publication">Publication</label>
                             <input type="text" class="form-control" id="publication" name="publication" placeholder="Publication">
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary" id="add_movie">Add Record</button>
+                        </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" id="add_movie">Add Record</button>
-                </div>
+                
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
           </div><!-- /.modal -->
