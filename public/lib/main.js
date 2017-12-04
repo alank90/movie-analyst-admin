@@ -68,28 +68,28 @@ $(document).ready(function () {
 
 
     // ==== Event handler for Add New Movie Modal on movies page ==================
-    $('#form').validator().on('submit', function(e) {
+    $('#form').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
             // Do nothing. There was an error
         } else {
-       
-                $.ajax({
-                    method: 'POST',
-                    data: $("#form").serializeArray(),
-                    url: 'http://localhost:8080/movies/addmovie',
-                    dataType: 'JSON'
+
+            $.ajax({
+                method: 'POST',
+                data: $("#form").serializeArray(),
+                url: 'http://localhost:8080/movies/addmovie',
+                dataType: 'JSON'
+            })
+                .then(function (response) {
+                    $('#addReviewModal').modal('hide');
+                    if (addMovie(response)) {
+                        // Do nothing if return true
+                    } else {
+                        throw "Movie object passed to addMovie is empty.";
+                    }
                 })
-                    .then(function (response) {
-                        $('#addReviewModal').modal('hide');
-                        if (addMovie(response)) {
-                            // Do nothing if return true
-                        } else {
-                            throw "Movie object passed to addMovie is empty.";
-                        }
-                    })
-                    .catch(function (error) {
-                        $('#addReviewModal').modal('hide');
-                    });
+                .catch(function (error) {
+                    $('#addReviewModal').modal('hide');
+                });
         } // end else
 
     }); // end event handler
