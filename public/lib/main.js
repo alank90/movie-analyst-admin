@@ -143,4 +143,9 @@ $(document).ready(function () {
 
     // ================ End Event Handler ==========================================
 
+    // =============== Clear Form Fields ============================================
+    $("#clear_form").on("click", function(e) {
+        $('#form')[0].reset(); 
+    });
+
 }); // end $(document).ready()
