@@ -3,10 +3,11 @@
 // ================ Main ============================================ 
 $(document).ready(function () {
     // ========= Event Handler for Updating Movies page =============
-    $("#update_button").on("click", function (e) {
+    $("#update_button").popover().on("click", function (e) {
         try {
             e.preventDefault();
             var updatedDocument = {};
+            var $btn = $(this).button('loading'); //Bootstrap 
 
             // Let's find the data-id of the checked panel
             // We will iterate thru each .panel DOM object and check 
@@ -57,6 +58,8 @@ $(document).ready(function () {
                 else {
                     alert('Error: ' + response.msg);
                 }
+
+            $btn.button('reset'); // End PUT
 
             }); // end .done
         }
