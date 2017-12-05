@@ -1,44 +1,49 @@
+<!-- ==== Add New Movie Document Modal Markup ======== -->
+<div class="modal fade" tabindex="-1" id="addReviewModal" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Add New Movie Review</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form" role="form">
+                    <div class="form-group">
+                        <label for="movieTitle">Movie Title</label>
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Gone With The Wind" data-error="Title is required"
+                            required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="release">Release</label>
+                        <input type="number" class="form-control" id="release" name="release" placeholder="Release Year" min="1900" max="2018" data-error="release date required/out-of-range"
+                            required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="score">Score</label>
+                        <input type="number" min="0" max="10" step=".5" class="form-control" id="score" name="score" placeholder="Score" data-error="Score must be between 0-10 at halfpoints"
+                            required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="reviewer">Reviewer</label>
+                        <input type="text" class="form-control" id="reviewer" name="reviewer" placeholder="Reviewer" data-error="Required" required>
+                        <div class="help-block with-errors"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="publication">Publication</label>
+                        <input type="text" class="form-control" id="publication" name="publication" placeholder="Publication">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" id="add_movie">Add Record</button>
+                    </div>
+                </form>
+            </div>
 
-        <!-- ==== Add New Movie Document Modal Markup ======== -->
-        <div class="modal fade" tabindex="-1" id="addReviewModal" role="dialog">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title">Add New Movie Review</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="form" role="form">
-                        <div class="form-group">
-                          <label for="movieTitle">Movie Title</label>
-                          <input type="text" class="form-control" id="title" name="title" placeholder="Gone With The Wind" data-error="Title is required" required>
-                          <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="release">Release</label>
-                            <input type="text" class="form-control" id="release" name="release" placeholder="Release Year" data-error="release date required" required>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="score">Score</label>
-                            <input type="number" min="0" max="10" class="form-control" id="score" name="score" placeholder="Score" data-error="Score must be between 1-10" required>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="reviewer">Reviewer</label>
-                            <input type="text" class="form-control" id="reviewer" name="reviewer" placeholder="Reviewer">
-                        </div>
-                        <div class="form-group">
-                            <label for="publication">Publication</label>
-                            <input type="text" class="form-control" id="publication" name="publication" placeholder="Publication">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary" id="add_movie">Add Record</button>
-                        </div>
-                    </form>
-                </div>
-                
-              </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-          </div><!-- /.modal -->
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->

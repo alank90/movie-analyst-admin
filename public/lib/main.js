@@ -68,7 +68,7 @@ $(document).ready(function () {
 
 
     // ==== Event handler for Add New Movie Modal on movies page ==================
-    $('#form').on('submit', function (e) {
+    $('#form').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
             // Do nothing. There was an error
         } else {
