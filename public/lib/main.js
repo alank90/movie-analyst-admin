@@ -147,5 +147,5 @@ $(document).ready(function () {
     $("#clear_form").on("click", function(e) {
         $('#form')[0].reset(); 
     });
-
+    // ============ End Clear Form ===================================================
 }); // end $(document).ready()
