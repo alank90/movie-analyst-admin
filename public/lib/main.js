@@ -1,4 +1,4 @@
-// main.js
+// /lib/main.js
 
 // ================ Main ============================================ 
 $(document).ready(function () {
@@ -68,28 +68,18 @@ $(document).ready(function () {
 
 
     // ==== Event handler for Add New Movie Modal on movies page ==================
-    $('#form').validator().on('submit', function (e) {
+    $('#form').on('submit', function (e) {
         if (e.isDefaultPrevented()) {
             // Do nothing. There was an error
         } else {
-            settings = {
-                "method": "POST",
-                "data": "$('#form').serializeArray()",
-                "url": "http://localhost:8080/movies/addmovie",
-                "dataType": "JSON"
-            };
-
-            $.ajax(settings)
-            .done(function(data) {
-                console.log("in then");
-                console.log(data);
-            });
-        } // end else
-
-
-
-                /* .then(function (response) {
-                    console.log(response);
+            e.preventDefault();
+            $.ajax({
+                method: "POST",
+                data: $('#form').serializeArray(),
+                url: "http://localhost:8080/movies/addmovie",
+                dataType: "JSON"
+            })
+                .then(function (response) {
                     $('#addReviewModal').modal('hide');
                     if (addMovie(response)) {
                         // Do nothing if return true
@@ -99,8 +89,9 @@ $(document).ready(function () {
                 })
                 .catch(function (error) {
                     $('#addReviewModal').modal('hide');
-                }); */
-        
+                });
+
+        } // end else
 
     }); // end event handler
 
