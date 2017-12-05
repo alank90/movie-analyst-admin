@@ -72,14 +72,24 @@ $(document).ready(function () {
         if (e.isDefaultPrevented()) {
             // Do nothing. There was an error
         } else {
+            settings = {
+                "method": "POST",
+                "data": "$('#form').serializeArray()",
+                "url": "http://localhost:8080/movies/addmovie",
+                "dataType": "JSON"
+            };
 
-            $.ajax({
-                method: 'POST',
-                data: $("#form").serializeArray(),
-                url: 'http://localhost:8080/movies/addmovie',
-                dataType: 'JSON'
-            })
-                .then(function (response) {
+            $.ajax(settings)
+            .done(function(data) {
+                console.log("in then");
+                console.log(data);
+            });
+        } // end else
+
+
+
+                /* .then(function (response) {
+                    console.log(response);
                     $('#addReviewModal').modal('hide');
                     if (addMovie(response)) {
                         // Do nothing if return true
@@ -89,8 +99,8 @@ $(document).ready(function () {
                 })
                 .catch(function (error) {
                     $('#addReviewModal').modal('hide');
-                });
-        } // end else
+                }); */
+        
 
     }); // end event handler
 
