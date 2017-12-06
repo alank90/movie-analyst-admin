@@ -7,7 +7,13 @@ $(document).ready(function () {
         try {
             e.preventDefault();
             var updatedDocument = {};
-            var $btn = $(this).button('loading'); //Bootstrap 
+
+            // This is for loading effect when clinking Update button
+            const $btn = $(this);
+            $btn.button('loading');
+            setTimeout(function() {
+                $btn.button("reset");
+            }, 2500 ); //Bootstrap 
 
             // Let's find the data-id of the checked panel
             // We will iterate thru each .panel DOM object and check 
@@ -58,14 +64,18 @@ $(document).ready(function () {
                 else {
                     alert('Error: ' + response.msg);
                 }
-
-            $btn.button('reset'); // End PUT
-
+            
             }); // end .done
-        }
+        } // end try
         catch (error) {
             alert(error);
         }
+        
+        const reset = function()  {
+                $btn.button('reset');
+            };
+
+        setTimeout(reset, 2500);
 
     });  // =========== End #update_button  event handler =========================
 
