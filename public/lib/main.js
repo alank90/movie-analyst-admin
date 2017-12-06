@@ -40,15 +40,18 @@ $(document).ready(function () {
                 data: updatedDocument,
                 url: 'http://localhost:8080/movies/updatemovie/' + updatedDocument.documentID,
                 dataType: 'JSON',
-                success: function() {
+                success: function(response) {
                     // This is for loading effect when clinking Update button
                     // $("#update_button") is equivalent to $btn = $(this) declared 
                     // in the click event handler scope
                     const $btn = $("#update_button");
+                    const movie = response;
                     $btn.button('loading');
                     setTimeout(function() {
+                        // Delayed button reset and panel-title update for effect
                         $btn.button("reset");
-                    }, 2500 ); // For Bootstrap 
+                        $("div[data-id = " + movie[0]._id + "] .panel-title").text("Edit: " + movie[0].title);
+                    }, 1750 ); // For Bootstrap 
                 }
             }).done(function (response) {
                 // Check for successful json response
@@ -57,7 +60,6 @@ $(document).ready(function () {
                     const movie = response;
 
                     // Write the Updated Values back to the movie form panel from API JSON return array
-                    $("div[data-id = " + movie[0]._id + "] .panel-title").text("Edit: " + movie[0].title);
                     $("div[data-id = " + movie[0]._id + "] input#name.form-control").attr("value", movie[0].title);
                     $("div[data-id = " + movie[0]._id + "] input#release.form-control").attr("value", movie[0].release);
                     $("div[data-id = " + movie[0]._id + "] input#score.form-control").attr("value", movie[0].score);
@@ -80,7 +82,7 @@ $(document).ready(function () {
     // ==== Event handler for Add New Movie Modal on movies page ==================
     $('#form').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
-            // Do nothing. There was an error
+            // Do nothing. There was an error. This is required for validator() to work
         } else {
             e.preventDefault();
             $.ajax({
@@ -103,7 +105,13 @@ $(document).ready(function () {
 
         } // end else
 
-    }); // end event handler
+    }); // end #form event handler
+
+    // =============== Clear Fields on Add Movie Form ============================================
+    $("#clear_form").on("click", function(e) {
+        $('#form')[0].reset(); 
+    });
+    // ============ End Clear Form ===================================================
 
     // ==== Event handler to Delete Movie document on movies page ==================
     $("#delete_button").on("click", function (e) {
@@ -153,9 +161,5 @@ $(document).ready(function () {
 
     // ================ End Event Handler ==========================================
 
-    // =============== Clear Form Fields ============================================
-    $("#clear_form").on("click", function(e) {
-        $('#form')[0].reset(); 
-    });
-    // ============ End Clear Form ===================================================
+    
 }); // end $(document).ready()

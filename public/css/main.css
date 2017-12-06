@@ -9,6 +9,10 @@ body {
     word-break: break-all;
 }
 
+input {
+    text-align: center;
+}
+
 .radio {
    max-width: 40%;
    float: right;
