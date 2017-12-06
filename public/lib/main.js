@@ -3,18 +3,11 @@
 // ================ Main ============================================ 
 $(document).ready(function () {
     // ========= Event Handler for Updating Movies page =============
-    $("#update_button").popover().on("click", function (e) {
+    $("#update_button").on("click", function (e) {
         try {
             e.preventDefault();
             var updatedDocument = {};
-
-            // This is for loading effect when clinking Update button
-            const $btn = $(this);
-            $btn.button('loading');
-            setTimeout(function() {
-                $btn.button("reset");
-            }, 2500 ); //Bootstrap 
-
+                        
             // Let's find the data-id of the checked panel
             // We will iterate thru each .panel DOM object and check 
             // if its radiobox is checked, and if so we will go 
@@ -46,7 +39,17 @@ $(document).ready(function () {
                 type: 'PUT',
                 data: updatedDocument,
                 url: 'http://localhost:8080/movies/updatemovie/' + updatedDocument.documentID,
-                dataType: 'JSON'
+                dataType: 'JSON',
+                success: function() {
+                    // This is for loading effect when clinking Update button
+                    // $("#update_button") is equivalent to $btn = $(this) declared 
+                    // in the click event handler scope
+                    const $btn = $("#update_button");
+                    $btn.button('loading');
+                    setTimeout(function() {
+                        $btn.button("reset");
+                    }, 2500 ); // For Bootstrap 
+                }
             }).done(function (response) {
                 // Check for successful json response
                 if (Object.keys(response).length > 0) {
@@ -70,12 +73,6 @@ $(document).ready(function () {
         catch (error) {
             alert(error);
         }
-        
-        const reset = function()  {
-                $btn.button('reset');
-            };
-
-        setTimeout(reset, 2500);
 
     });  // =========== End #update_button  event handler =========================
 
