@@ -1,6 +1,8 @@
 // /lib/main.js
 
-// ================ Main ============================================ 
+// ==================================================================
+// ================ Main ============================================
+// ================================================================== 
 $(document).ready(function () {
     // ========= Event Handler for Updating Movies page =============
     $("#update_button").on("click", function (e) {
@@ -36,7 +38,7 @@ $(document).ready(function () {
             // an AJAX req and grab the updated data from our document and send
             // a PUT to our API endpoint. First we need to get an access token for our API.
 
-            var settings = {
+            const settings = {
                 "async": true,
                 "crossDomain": true,
                 "url": "https://movieapi.auth0.com/oauth/token",
@@ -48,6 +50,7 @@ $(document).ready(function () {
             };
 
             $.ajax(settings)
+                  // .then we send our request to the API on :8080 updating the movie document 
                 .then(function (auth0) {
                     $.ajax({
                         type: 'PUT',
@@ -69,6 +72,7 @@ $(document).ready(function () {
                             }, 1750); // For Bootstrap 
                         }
                     })
+                        // And when we're .done we validate the API response and redraw that movie panel
                         .done(function (response) {
                             // Check for successful json response
                             if (Object.keys(response).length > 0) {
@@ -97,29 +101,48 @@ $(document).ready(function () {
     });  // =========== End #update_button  event handler =========================
 
 
-    // ==== Event handler for Add New Movie Modal on movies page ==================
+    // ==== Event handler for Add a New Movie Modal form ==================
     $('#form').validator().on('submit', function (e) {
         if (e.isDefaultPrevented()) {
             // Do nothing. There was an error. This is required for validator() to work
         } else {
             e.preventDefault();
-            $.ajax({
-                method: "POST",
-                data: $('#form').serializeArray(),
-                url: "http://localhost:8080/movies/addmovie",
-                dataType: "JSON"
-            })
-                .then(function (response) {
-                    $('#addReviewModal').modal('hide');
-                    if (addMovie(response)) {
-                        // Do nothing if return true
-                    } else {
-                        throw "Movie object passed to addMovie is empty.";
-                    }
-                })
-                .catch(function (error) {
-                    $('#addReviewModal').modal('hide');
-                });
+             
+            const settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://movieapi.auth0.com/oauth/token",
+                "method": "POST",
+                "headers": {
+                    "content-type": "application/json"
+                },
+                "data": "{\"client_id\":\"dDaFd6kxSVohuUzgUVgQt70jwudxHvee\",\"client_secret\":\"2FJDqQ8EFp8VY-Oeew2ICkxnDVT1_3aMtBeTX3Rg3O38GbJ5bkeOiRMK0ZaAnqbC\",\"audience\":\"movieanalyst\",\"grant_type\":\"client_credentials\"}"
+            };
+
+             // We first get access token from auth0 for our add movie action. This will be presented 
+             // to the api when we do the POST of form data from subscriber.
+            $.ajax(settings)
+                    // .then we send our request to the API on :8080 updating the movie document 
+                .then(function (auth0) {
+                    $.ajax({
+                        method: "POST",
+                        headers: { 'Authorization': 'Bearer ' + auth0.access_token },
+                        data: $('#form').serializeArray(),
+                        url: "http://localhost:8080/movies/addmovie",
+                        dataType: "JSON"
+                    })
+                        .done(function (response) {
+                            $('#addReviewModal').modal('hide');
+                            if (addMovie(response)) {
+                                // Do nothing if return true
+                            } else {
+                                throw "Movie object passed to addMovie is empty.";
+                            }
+                        })
+                        .catch(function (error) {
+                            $('#addReviewModal').modal('hide');
+                        });
+                }); // end .then
 
         } // end else
 
@@ -150,26 +173,42 @@ $(document).ready(function () {
                 throw "Error. No Selection Made.";
             }
             const confirmDelete = confirm("Are you sure you want to delete document?");
-            if (confirmDelete == true) //do nothing
+            if (confirmDelete == true); //do nothing
 
+            const settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://movieapi.auth0.com/oauth/token",
+                "method": "POST",
+                "headers": {
+                    "content-type": "application/json"
+                },
+                "data": "{\"client_id\":\"dDaFd6kxSVohuUzgUVgQt70jwudxHvee\",\"client_secret\":\"2FJDqQ8EFp8VY-Oeew2ICkxnDVT1_3aMtBeTX3Rg3O38GbJ5bkeOiRMK0ZaAnqbC\",\"audience\":\"movieanalyst\",\"grant_type\":\"client_credentials\"}"
+            };
+
+            $.ajax(settings)
+                  // .then we send our request to the API on :8080 updating the movie document 
+                .then(function (auth0) {
                 // Let's Send off the ID to be deleted to the Movie-Analyst API via AJAX
-                $.ajax({
-                    method: 'DELETE',
-                    url: 'http://localhost:8080/movies/deletemovie/' + deleteDocumentID,
-                    dataType: "text"
-                })
-                    .then(function (response) {
-                        if (deleteMovie(response)) {
-                            // Do nothing if return true
-                        } else {
-                            throw "Invalid movieID submitted to deleteMovie.";
-                        }
+                    $.ajax({
+                        method: 'DELETE',
+                        headers: { 'Authorization': 'Bearer ' + auth0.access_token },
+                        url: 'http://localhost:8080/movies/deletemovie/' + deleteDocumentID,
+                        dataType: "text"
                     })
-                    .catch(function (error) {
-                        alert("Error: Delete Failed. The AJAX promise was rejected." + error);
+                        .then(function (response) {
+                            if (deleteMovie(response)) {
+                                // Do nothing if return true
+                            } else {
+                                throw "Invalid movieID submitted to deleteMovie.";
+                            }
+                        })
+                        .catch(function (error) {
+                            alert("Error: Delete Failed. The AJAX promise was rejected." + error);
+                        });
                     });
 
-        }
+        } // end try
         catch (error) {
             alert(error);
         }
