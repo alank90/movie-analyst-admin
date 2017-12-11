@@ -1,3 +1,5 @@
+// /routes/movies.js
+
 // Declare our dependencies
 const express = require('express');
 const request = require('superagent');
@@ -17,7 +19,6 @@ router.get('/', getAccessToken, function (req, res) {
         .set('Authorization', 'Bearer ' + req.access_token)
         .end(function (err, data) {
             if (data.status == 401) {
-                console.log(data.status);
                 res.status(401).send(err);
             } else {
                 const movies = data.body;

@@ -1,9 +1,22 @@
-// /lib/main.js
+// /public/lib/main.js
 
 // ==================================================================
 // ================ Main ============================================
 // ================================================================== 
 $(document).ready(function () {
+    // Global AJAX Settings 
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://movieapi.auth0.com/oauth/token",
+        "method": "POST",
+        "headers": {
+            "content-type": "application/json"
+        },
+        "data": "{\"client_id\":\"dDaFd6kxSVohuUzgUVgQt70jwudxHvee\",\"client_secret\":\"2FJDqQ8EFp8VY-Oeew2ICkxnDVT1_3aMtBeTX3Rg3O38GbJ5bkeOiRMK0ZaAnqbC\",\"audience\":\"movieanalyst\",\"grant_type\":\"client_credentials\"}"
+    };
+
+
     // ========= Event Handler for Updating Movies page =============
     $("#update_button").on("click", function (e) {
         try {
@@ -33,22 +46,10 @@ $(document).ready(function () {
                 throw "Error: Empty updateDocument Object. Did you make a selection?";
             }
 
-
             // Now we have the document stored in JSON object, so lets form 
             // an AJAX req and grab the updated data from our document and send
             // a PUT to our API endpoint. First we need to get an access token for our API.
-
-            const settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://movieapi.auth0.com/oauth/token",
-                "method": "POST",
-                "headers": {
-                    "content-type": "application/json"
-                },
-                "data": "{\"client_id\":\"dDaFd6kxSVohuUzgUVgQt70jwudxHvee\",\"client_secret\":\"2FJDqQ8EFp8VY-Oeew2ICkxnDVT1_3aMtBeTX3Rg3O38GbJ5bkeOiRMK0ZaAnqbC\",\"audience\":\"movieanalyst\",\"grant_type\":\"client_credentials\"}"
-            };
-
+            
             $.ajax(settings)
                   // .then we send our request to the API on :8080 updating the movie document 
                 .then(function (auth0) {
@@ -69,7 +70,7 @@ $(document).ready(function () {
                                 // Delayed button reset and panel-title update for effect
                                 $btn.button("reset");
                                 $("div[data-id = " + movie[0]._id + "] .panel-title").text("Edit: " + movie[0].title);
-                            }, 1750); // For Bootstrap 
+                            }, 1500); // For Bootstrap 
                         }
                     })
                         // And when we're .done we validate the API response and redraw that movie panel
@@ -107,18 +108,7 @@ $(document).ready(function () {
             // Do nothing. There was an error. This is required for validator() to work
         } else {
             e.preventDefault();
-             
-            const settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://movieapi.auth0.com/oauth/token",
-                "method": "POST",
-                "headers": {
-                    "content-type": "application/json"
-                },
-                "data": "{\"client_id\":\"dDaFd6kxSVohuUzgUVgQt70jwudxHvee\",\"client_secret\":\"2FJDqQ8EFp8VY-Oeew2ICkxnDVT1_3aMtBeTX3Rg3O38GbJ5bkeOiRMK0ZaAnqbC\",\"audience\":\"movieanalyst\",\"grant_type\":\"client_credentials\"}"
-            };
-
+            
              // We first get access token from auth0 for our add movie action. This will be presented 
              // to the api when we do the POST of form data from subscriber.
             $.ajax(settings)
@@ -174,17 +164,6 @@ $(document).ready(function () {
             }
             const confirmDelete = confirm("Are you sure you want to delete document?");
             if (confirmDelete == true); //do nothing
-
-            const settings = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://movieapi.auth0.com/oauth/token",
-                "method": "POST",
-                "headers": {
-                    "content-type": "application/json"
-                },
-                "data": "{\"client_id\":\"dDaFd6kxSVohuUzgUVgQt70jwudxHvee\",\"client_secret\":\"2FJDqQ8EFp8VY-Oeew2ICkxnDVT1_3aMtBeTX3Rg3O38GbJ5bkeOiRMK0ZaAnqbC\",\"audience\":\"movieanalyst\",\"grant_type\":\"client_credentials\"}"
-            };
 
             $.ajax(settings)
                   // .then we send our request to the API on :8080 updating the movie document 

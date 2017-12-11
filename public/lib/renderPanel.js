@@ -1,4 +1,4 @@
-// renderPanel.js
+// /public/lib/renderPanel.js
 
 // Function takes the movieID returned from /deleteMovie route
 // and updates the DOM
@@ -37,8 +37,6 @@ const addMovie = function(movie) {
         return false;
     }
    
-      
-    
 };  // End addMovie function
 
 
