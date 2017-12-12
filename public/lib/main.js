@@ -163,7 +163,7 @@ $(document).ready(function () {
                 throw "Error. No Selection Made.";
             }
             const confirmDelete = confirm("Are you sure you want to delete document?");
-            if (confirmDelete == true); //do nothing
+            if (confirmDelete) { //do nothing
 
             $.ajax(settings)
                   // .then we send our request to the API on :8080 updating the movie document 
@@ -186,6 +186,9 @@ $(document).ready(function () {
                             alert("Error: Delete Failed. The AJAX promise was rejected." + error);
                         });
                     });
+            } else {
+                // do nothing
+            } // end confirmDelete
 
         } // end try
         catch (error) {
