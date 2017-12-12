@@ -163,29 +163,28 @@ $(document).ready(function () {
                 throw "Error. No Selection Made.";
             }
             const confirmDelete = confirm("Are you sure you want to delete document?");
-            if (confirmDelete) { //do nothing
-
-            $.ajax(settings)
-                  // .then we send our request to the API on :8080 updating the movie document 
-                .then(function (auth0) {
-                // Let's Send off the ID to be deleted to the Movie-Analyst API via AJAX
-                    $.ajax({
-                        method: 'DELETE',
-                        headers: { 'Authorization': 'Bearer ' + auth0.access_token },
-                        url: 'http://localhost:8080/movies/deletemovie/' + deleteDocumentID,
-                        dataType: "text"
-                    })
-                        .then(function (response) {
-                            if (deleteMovie(response)) {
-                                // Do nothing if return true
-                            } else {
-                                throw "Invalid movieID submitted to deleteMovie.";
-                            }
+            if (confirmDelete) { 
+                $.ajax(settings)
+                    // .then we send our request to the API on :8080 updating the movie document 
+                    .then(function (auth0) {
+                    // Let's Send off the ID to be deleted to the Movie-Analyst API via AJAX
+                        $.ajax({
+                            method: 'DELETE',
+                            headers: { 'Authorization': 'Bearer ' + auth0.access_token },
+                            url: 'http://localhost:8080/movies/deletemovie/' + deleteDocumentID,
+                            dataType: "text"
                         })
-                        .catch(function (error) {
-                            alert("Error: Delete Failed. The AJAX promise was rejected." + error);
+                            .then(function (response) {
+                                if (deleteMovie(response)) {
+                                    // Do nothing if return true
+                                } else {
+                                    throw "Invalid movieID submitted to deleteMovie.";
+                                }
+                            })
+                            .catch(function (error) {
+                                alert("Error: Delete Failed. The AJAX promise was rejected." + error);
+                            });
                         });
-                    });
             } else {
                 // do nothing
             } // end confirmDelete
